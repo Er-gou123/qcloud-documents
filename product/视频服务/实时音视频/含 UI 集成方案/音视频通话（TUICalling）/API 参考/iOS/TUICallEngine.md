@@ -37,13 +37,13 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 ### createInstance
 创建 TUICallEngine 的单例。
 ```objc
--(TUICallEngine *)shareInstance;
+-(TUICallEngine *)createInstance;
 ```
 
 ### destroyInstance
 销毁 TUICallEngine 的单例。
 ```objc
--(void)destroySharedInstance;
+-(void)destroyInstance;
 ```
 
 ### init
