@@ -37,19 +37,19 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 ### createInstance
 创建 TUICallEngine 的单例。
 ```objc
--(TUICallEngine *)createInstance;
+- (TUICallEngine *)createInstance;
 ```
 
 ### destroyInstance
 销毁 TUICallEngine 的单例。
 ```objc
--(void)destroyInstance;
+- (void)destroyInstance;
 ```
 
 ### init
 初始化函数，请在使用所有功能之前先调用该函数，以便完成包含通话服务鉴权在内初始化动作。
 ```objc
--(void)init:(NSString *)sdkAppID userId:(NSString *)userId userSig:(NSString *)userSig succ:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)init:(NSString *)sdkAppID userId:(NSString *)userId userSig:(NSString *)userSig succ:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 参数如下表所示：
 
@@ -63,21 +63,21 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 ### addObserver
 添加回调接口，您可以通过这个接听，监听`TUICallObserver`相关的事件回调。
 ```objc
--(void)addObserver:(id<TUICallObserver>)observer;
+- (void)addObserver:(id<TUICallObserver>)observer;
 ```
 
 
 ### removeObserver
 移除回调接口。
 ```objc
--(void)removeObserver:(id<TUICallObserver>)observer;
+- (void)removeObserver:(id<TUICallObserver>)observer;
 ```
 
 ### call
 拨打电话（1v1通话）
 
 ```objc
--(void)call:(TUIRoomId *)roomId userId:(NSString *)userId callMediaType:(TUICallMediaType)callMediaType succ:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)call:(TUIRoomId *)roomId userId:(NSString *)userId callMediaType:(TUICallMediaType)callMediaType succ:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 参数如下表所示：
@@ -92,7 +92,7 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 发起群组通话，注意：使用群组通话前需要创建IM 群组，如果已经创建，请忽略；
 
 ```objc
--(void)groupCall:(TUIRoomId *)roomId groupId:(NSString *)groupId userIdList:(NSArray *)userIdList callMediaType:(TUICallMediaType)callMediaType succ:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)groupCall:(TUIRoomId *)roomId groupId:(NSString *)groupId userIdList:(NSArray *)userIdList callMediaType:(TUICallMediaType)callMediaType succ:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 | 参数 | 类型 | 含义 |
@@ -107,14 +107,14 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 
 接受当前通话，当您作为被叫收到 `onCallReceived()` 的回调时，可以调用该函数接听来电。
 ```objc
--(void)accept:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)accept:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 ### reject
 
 拒绝当前通话，当您作为被叫收到 `onCallReceived()` 的回调时，可以调用该函数拒绝来电。
 ```objc
--(void)reject:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)reject:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 ### ignore
@@ -122,35 +122,35 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 
 备注：如果您的业务中存在直播、会议等场景，在直播/会议中的情况时，也可以调用这个函数来忽略此次来电；
 ```objc
--(void)ignore:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)ignore:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 ### hangup
 挂断当前通话，当您处于通话中，可以调用该函数结束通话。
 
 ```objc
--(void)hangup:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)hangup:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 ### inviteUser
 邀请用户加入此次群组通话，使用场景：一个群组通话中的用户主动邀请其他人时使用。
 
 ```objc
--(void)inviteUser:(NSArray<NSString *> *)userIdList succ:(void(^)(NSArray *userIdList))succ fail:(TUICallFail)fail;
+- (void)inviteUser:(NSArray<NSString *> *)userIdList succ:(void(^)(NSArray *userIdList))succ fail:(TUICallFail)fail;
 ```
 
 ### joinInGroupCall
 主动加入此次群组通话，使用场景：群组内用户主动加入此次群组通话使用。
 
 ```objc
--(void)joinInGroupCall:(TUIRoomId *)roomId groupId:(NSString *)groupId callMediaType:(TUICallMediaType)callMediaType succ:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)joinInGroupCall:(TUIRoomId *)roomId groupId:(NSString *)groupId callMediaType:(TUICallMediaType)callMediaType succ:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 ### switchCallMediaType
 切换视频通话到语音通话。
 
 ```objc
--(void)switchCallMediaType:(TUICallMediaType)newType;
+- (void)switchCallMediaType:(TUICallMediaType)newType;
 ```
 
 ### setRenderView
@@ -159,69 +159,69 @@ TUICallEngine API 是音视频通话组件的**无 UI 接口**，如果 TUICallK
 - **远端：在收到`onUserJoin`的回调以后，就可以调用这个接口，设置对应userid的视频渲染View；**
 
 ```objc
--(void)setRenderView:(NSString *)userId videoView:(TUIVideoView *)videoView succ:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)setRenderView:(NSString *)userId videoView:(TUIVideoView *)videoView succ:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 ### startRemoteView
 设置显示视频画面的 View 对象
 ```objc
--(void)startRemoteView:(NSString *)userId onPlaying:(void(^)(NSString *userId))onPlaying onLoading:(void(^)(NSString *userId))onLoading onError:(void(^)(NSString *userId, int code, NSString *errMsg))onError;
+- (void)startRemoteView:(NSString *)userId onPlaying:(void(^)(NSString *userId))onPlaying onLoading:(void(^)(NSString *userId))onLoading onError:(void(^)(NSString *userId, int code, NSString *errMsg))onError;
 ```
 
 ### stopRemoteView
 设置显示视频画面的 View 对象
 ```objc
--(void)stopRemoteView:(NSString *)userId;
+- (void)stopRemoteView:(NSString *)userId;
 ```
 
 ### openCamera
 开启摄像头。
 
 ```objc
--(void)openCamera:(TUICallCamera)camera succ:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)openCamera:(TUICallCamera)camera succ:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 ### closeCamera
 
 关闭摄像头。
 ```objc
--(void)closeCamera;
+- (void)closeCamera;
 ```
 
 ### switchCamera
 切换前后摄像头。
 ```objc
--(void)switchCamera:(TUICallCamera)camera;
+- (void)switchCamera:(TUICallCamera)camera;
 ```
 
 ### openMicrophone
 
 打开麦克风。
 ```objc
--(void)openMicrophone:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)openMicrophone:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 ### closeMicrophone
 关闭麦克风。
 ```objc
--(void)closeMicrophone;
+- (void)closeMicrophone;
 ```
 
 ### selectAudioPlaybackDevice
 
 选择音频播放设备，目前支持听筒、扬声器，在通话场景中，可以使用这个接口来开启/关闭免提模式。
 ```objc
--(void)selectAudioPlaybackDevice:(TUIAudioPlaybackDevice)device;
+- (void)selectAudioPlaybackDevice:(TUIAudioPlaybackDevice)device;
 ```
 
 ### setSelfInfo
 设置用户头像、昵称的接口。
 ```objc
--(void)setSelfInfo:(NSString * _Nullable)nickName avatar:(NSString * _Nullable)avatar succ:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)setSelfInfo:(NSString * _Nullable)nickName avatar:(NSString * _Nullable)avatar succ:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
 
 ### enableMultiDeviceAbility
 开启/关闭 TUICallEngine 的多设备登录模式 （尊享版套餐支持）
 ```objc
--(void)enableMultiDeviceAbility:(BOOL)enable succ:(TUICallSucc)succ fail:(TUICallFail)fail;
+- (void)enableMultiDeviceAbility:(BOOL)enable succ:(TUICallSucc)succ fail:(TUICallFail)fail;
 ```
